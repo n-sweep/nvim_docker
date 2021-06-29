@@ -15,14 +15,14 @@ then
     docker run --rm -it \
         -h $host \
         -v ${PWD}:/home/work \
-        edit
+        nsweep/nvimserv
 elif [ -d $1 ]
 then
     # If $1 exists and is a directory, attach to dir with zsh
     docker run --rm -it \
         -h $host \
         -v `realpath $1`:/home/work \
-        edit
+        nsweep/nvimserv
 else
     # If $1 exists and is not a directory, open in nvim
     target=`realpath $1`
@@ -32,6 +32,6 @@ else
         -h $host \
         -v $dir:/home/work \
         --entrypoint nvim \
-        edit $1
+        nsweep/nvimserv $1
 fi
 
